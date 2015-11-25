@@ -4,7 +4,13 @@ log_directory = "/var/lib/docker/containers"
 file_match = '(?P<Container>[^/]+)/[a-zA-Z0-9]+-json.log?(?P<Index>\d+)?(.gz)?'
 priority = ["^Index"]
 differentiator = ["Container"]
- 
+
+[dockerConfig]
+type = "LogstreamerInput"
+log_directory = "/var/lib/docker/containers"
+file_match = '(?P<Container>[^/]+)/config.json'
+differentiator = ["Container"]
+splitter = "NullSplitter"
  
 [logentriesEncoder]
 type = "SandboxEncoder"
