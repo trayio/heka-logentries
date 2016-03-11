@@ -8,7 +8,7 @@ differentiator = ["Container"]
 [dockerConfig]
 type = "LogstreamerInput"
 log_directory = "/var/lib/docker/containers"
-file_match = '(?P<Container>[^/]+)/config.json'
+file_match = '(?P<Container>[^/]+)/config(.v2)?.json'
 differentiator = ["Container"]
 splitter = "NullSplitter"
  

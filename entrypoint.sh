@@ -7,4 +7,4 @@ if [ "x${TOKEN}" = "x" ]; then
 fi
 
 sed -i.bak -e "s/%TOKEN%/${TOKEN}/" /tmp/logentries.toml
-exec /heka-0_9_2-linux-amd64/bin/hekad -config /tmp/logentries.toml
+exec /heka-${HEKA_VERSION}-linux-amd64/bin/hekad -config /tmp/logentries.toml
