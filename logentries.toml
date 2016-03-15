@@ -1,7 +1,7 @@
 [input]
 type = "LogstreamerInput"
 log_directory = "/var/lib/docker/containers"
-file_match = '(?P<Container>[^/]+)/[a-zA-Z0-9]+-json.log?(?P<Index>\d+)?(.gz)?'
+file_match = '(?P<Container>[^/]+)/[a-zA-Z0-9]+-json.log'
 priority = ["^Index"]
 differentiator = ["Container"]
 
