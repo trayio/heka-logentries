@@ -23,14 +23,19 @@ function process_message()
     if not container_name then
        container_name = "unknown_container"
     elseif string.find(container_name, "RDAJR") then
-       local split = {}
-       for x in string.gmatch(container_name, "[^.]+") do
-          table.insert(split, x)
-       end
-       container_name = split[2]
+       -- local split = {}
+       -- for x in string.gmatch(container_name, "[^.]+") do
+       --    table.insert(split, x)
+       -- end
+       -- container_name = split[2]
+       return -2
     elseif string.find(container_name, "/") then
        container_name = string.gsub(container_name, "/", "", 1) -- docker prefixes container name with '/'
+       if container_name == "logentries" then
+          return -2
+       end
     end
+
 
     inject_message(token .. " " .. payload.time .. " name=" .. container_name .. " " .. read_message("Hostname") .. " " .. payload.log)
 
