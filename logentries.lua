@@ -18,6 +18,10 @@ function process_message()
       end
    end
 
+   if container_name == "" then
+      container_name = "unknown container"
+   end
+
    -- don't log connector logs
    if string.find(container_name, "RDAJR") then
       return -2
