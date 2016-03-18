@@ -1,16 +1,5 @@
 [input]
-type = "LogstreamerInput"
-log_directory = "/var/lib/docker/containers"
-file_match = '(?P<Container>[^/]+)/[a-zA-Z0-9]+-json.log'
-priority = ["^Index"]
-differentiator = ["Container"]
-
-[dockerConfig]
-type = "LogstreamerInput"
-log_directory = "/var/lib/docker/containers"
-file_match = '(?P<Container>[^/]+)/config(.v2)?.json'
-differentiator = ["Container", "-config"]
-splitter = "NullSplitter"
+type = "DockerLogInput"
  
 [logentriesEncoder]
 type = "SandboxEncoder"
@@ -23,7 +12,7 @@ filename = "/usr/share/heka/lua_encoders/logentries.lua"
 type = "TcpOutput"
 address = "api.logentries.com:20000"
 encoder = "logentriesEncoder"
-message_matcher = "Type == 'logfile'"
+message_matcher = "Type == 'DockerLog'"
 use_tls = true
 
     [logentriesOutput.tls]
