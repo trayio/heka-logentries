@@ -34,7 +34,7 @@ function process_message()
       timestamp = os.date("%Y-%m-%dT%H:%M:%SZ")
    end
    
-   inject_message(token .. " " .. timestamp .. " name=" .. container_name .. " " .. msg.Hostname .. " " .. msg.Payload .. "\n")
+   inject_message(token .. " " .. timestamp .. " name=" .. container_name .. " " .. msg.Hostname .. " " .. msg.Payload .. "\r\n")
 
    return 0
 
