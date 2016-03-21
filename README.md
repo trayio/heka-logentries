@@ -1,7 +1,5 @@
 ### Docker + Heka + Logentries
 
-Follows logs in /var/lib/docker and sends them to Logentries using token based TCP + TLS.
-
 #### Run
 
 ```bash
