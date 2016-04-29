@@ -7,6 +7,7 @@ filename = "/usr/share/heka/lua_encoders/logentries.lua"
  
         [logentriesEncoder.config]
         token = "%TOKEN%"
+        ip = "%IP_ADDRESS%"
  
 [logentriesOutput]
 type = "TcpOutput"

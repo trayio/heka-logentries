@@ -2,6 +2,7 @@ require "string"
 require "os"
  
 local token = read_config("token")
+local ip = read_config("ip")
 
 -- time from DockerLogInput is in nanoseconds which Lua can't handle
 function date(timestamp)
@@ -12,6 +13,11 @@ function process_message()
 
    local msg = decode_message(read_message("raw"))
    local container_name = nil
+
+   local host = ip
+   if not host or host == "" then
+      host = msg.Hostname
+   end
 
    for _, v in pairs(msg.Fields) do
       if v.name == "ContainerName" then
@@ -34,7 +40,7 @@ function process_message()
       timestamp = os.date("%Y-%m-%dT%H:%M:%SZ")
    end
    
-   inject_message(token .. " " .. timestamp .. " name=" .. container_name .. " " .. msg.Hostname .. " " .. msg.Payload .. "\r\n")
+   inject_message(token .. " " .. timestamp .. " name=" .. container_name .. " " .. host .. " " .. msg.Payload .. "\r\n")
 
    return 0
 
